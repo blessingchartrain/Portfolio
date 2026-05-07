@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – Blessing Chartrain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:       #e8111f;
+      --red-dark:  #9b0d15;
+      --red-light: #ffeaeb;
+      --red-mid:   #f5444e;
+      --black:     #0f0f0f;
+      --gray-900:  #1a1a1a;
+      --gray-700:  #3d3d3d;
+      --gray-500:  #737373;
+      --gray-200:  #e5e5e5;
+      --gray-100:  #f5f5f5;
+      --white:     #ffffff;
+      --serif:     'DM Serif Display', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── HEADER ─────────────────────────────────── */
+    header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #222;
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .header-logo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .header-logo span {
+      color: var(--red-mid);
+    }
+
+    nav {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+
+    nav a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    nav a.active {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(232,17,31,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red-mid);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--red-mid);
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      color: var(--white);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--red-mid);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1.4rem;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn-primary:hover { background: #c50e1a; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.7rem 1.4rem;
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 400;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.45);
+      color: var(--white);
+    }
+
+    /* ─── MAIN CONTENT ───────────────────────────── */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    /* ─── INTRO CARD ─────────────────────────────── */
+    .intro-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .intro-text p {
+      color: var(--gray-700);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .intro-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: var(--gray-100);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      text-align: center;
+    }
+
+    .stat-card .stat-number {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    /* ─── NAV CARDS ──────────────────────────────── */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 3.5rem;
+    }
+
+    .nav-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-card::after {
+      content: '→';
+      position: absolute;
+      right: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%) translateX(8px);
+      color: var(--red);
+      font-size: 1rem;
+      opacity: 0;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .nav-card:hover {
+      border-color: var(--red);
+      box-shadow: 0 4px 20px rgba(232,17,31,0.08);
+      transform: translateY(-2px);
+    }
+
+    .nav-card:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .nav-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--red-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .nav-card-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--red);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-card h3 {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 0.35rem;
+    }
+
+    .nav-card p {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    /* ─── SOMMAIRE ───────────────────────────────── */
+    .sommaire-block {
+      background: var(--gray-100);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 2rem;
+    }
+
+    .sommaire-block ol {
+      padding-left: 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.2rem 2rem;
+    }
+
+    .sommaire-block li {
+      font-size: 0.9rem;
+      padding: 0.2rem 0;
+      color: var(--gray-700);
+    }
+
+    .sommaire-block a {
+      color: var(--red-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .sommaire-block a:hover { text-decoration: underline; }
+
+    .sommaire-block ul {
+      padding-left: 1rem;
+      margin-top: 0.2rem;
+    }
+
+    .sommaire-block ul li {
+      font-size: 0.83rem;
+      color: var(--gray-500);
+      list-style-type: disc;
+    }
+
+    .sommaire-block ul ul li {
+      font-size: 0.78rem;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--gray-900);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      margin-top: 0;
+    }
+
+    footer strong {
+      color: rgba(255,255,255,0.8);
+      font-weight: 500;
+    }
+
+    .legal {
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+      color: rgba(255,255,255,0.35);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 700px) {
+      .intro-block { grid-template-columns: 1fr; }
+      .intro-stats { grid-template-columns: 1fr 1fr; }
+      .sommaire-block ol { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .hero { padding: 3.5rem 1.2rem 3rem; }
+      main { padding: 2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="header-inner">
+    <a href="PortFolioStage.html" class="header-logo">Blessing <span>Chartrain</span></a>
+    <nav>
+      <a href="PortFolioStage.html" class="active">Accueil</a>
+      <a href="apropos.html">À propos</a>
+      <a href="formation.html">Formation</a>
+      <a href="presentation.html">Entreprise</a>
+      <a href="mission.html">Projets</a>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Portfolio</p>
+    <h1>Blessing<br><em>Chartrain</em></h1>
+    <p class="hero-desc">
+      Étudiante en BTS Services Informatiques aux Organisations, spécialisée en solutions d'infrastructure, systèmes et réseaux. Ce portfolio retrace mon parcours, mes projets et les compétences développé en formation.
+    </p>
+    <div class="hero-actions">
+      <a href="CV Blessing Chartrain.pdf" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger mon CV
+      </a>
+      <a href="contacts.html" class="btn-ghost">Me contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MAIN ─── -->
+<main>
+
+  <!-- Présentation -->
+  <div class="intro-block">
+    <div class="intro-text">
+      <p class="section-label">Présentation</p>
+      <h2 class="section-title">Bienvenue sur<br>mon portfolio</h2>
+      <p>
+        Je m'appelle Blessing Chartrain et je suis actuellement étudiante en BTS SIO option SISR.
+        À travers ce site, je vous présente les projets réalisés durant ma formation, ainsi que les
+        compétences techniques et professionnelles que j'ai développé. Ce portfolio reflète mon évolution
+        dans le domaine de l'informatique et ma volonté de progresser continuellement.
+      </p>
+    </div>
+    <div class="intro-stats">
+      <div class="stat-card">
+        <div class="stat-number">2</div>
+        <div class="stat-label">ans de formation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">SISR</div>
+        <div class="stat-label">spécialité</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Plusieurs</div>
+        <div class="stat-label">projets réalisés</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">Stage : LDC</div>
+        <div class="stat-label">entreprise accueil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation cards -->
+  <p class="section-label">Explorer le portfolio</p>
+  <h2 class="section-title">Rubriques</h2>
+
+  <div class="nav-grid">
+    <a href="apropos.html" class="nav-card">
+      <div class="nav-card-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <h3>À propos</h3>
+      <p>Qui je suis, mes centres d'intérêt et mon CV</p>
+    </a>
+    <a href="formation.html" class="nav-card">
+      <div class="nav-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h3>Formation</h3>
+      <p>BTS SIO SISR, Bac STI2D SIN, blocs de compétences et matières professionnelles</p>
+    </a>
+    <a href="presentation.html" class="nav-card">
+      <div class="nav-card-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+      </div>
+      <h3>Entreprise</h3>
+      <p>Présentation, cybersécurité et veille technologique</p>
+    </a>
+    <a href="mission.html" class="nav-card">
+      <div class="nav-card-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Projets</h3>
+      <p>Missions, outils utilisés et tâches confiées en stage</p>
+    </a>
+    <a href="contacts.html" class="nav-card">
+      <div class="nav-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <h3>Contacts</h3>
+      <p>Me joindre par e-mail ou via mes réseaux professionnels</p>
+    </a>
+  </div>
+
+  <!-- Sommaire -->
+  <p class="section-label">Sommaire</p>
+  <h2 class="section-title">Plan du site</h2>
+
+  <div class="sommaire-block">
+    <ol>
+      <li>
+        <a href="apropos.html">À propos</a>
+        <ul>
+          <li>Qui je suis ?
+            <ul>
+              <li>Mes centres d'intérêt</li>
+              <li>CV Blessing Chartrain</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="formation.html">Formation</a>
+        <ul>
+          <li>Blocs de compétences</li>
+          <li>Matières professionnelles</li>
+        </ul>
+      </li>
+      <li>
+        <a href="presentation.html">Entreprise</a>
+        <ul>
+          <li>Présentation de LDC</li>
+          <li>Cybersécurité</li>
+          <li>Veille technologique</li>
+        </ul>
+      </li>
+      <li>
+        <a href="mission.html">Projets</a>
+        <ul>
+          <li>Logiciels & outils utilisés</li>
+          <li>Missions et tâches confiées</li>
+        </ul>
+      </li>
+      <li><a href="contacts.html">Contacts</a></li>
+    </ol>
+  </div>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div><strong>&copy; 2026 — Blessing Chartrain</strong> · Portfolio</div>
+  <p class="legal">
+    Mentions légales : Ce site est un portfolio personnel réalisé à des fins de recrutement. Tous les contenus sont présentés à titre informatif et n'ont pas de valeur contractuelle.
+  </p>
+</footer>
+
+</body>
+</html>
