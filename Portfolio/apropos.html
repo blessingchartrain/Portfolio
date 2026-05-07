@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – À propos · Blessing Chartrain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #e8111f; --red-dark: #9b0d15; --red-light: #ffeaeb; --red-mid: #f5444e;
+      --black: #0f0f0f; --gray-900: #1a1a1a; --gray-700: #3d3d3d; --gray-500: #737373;
+      --gray-200: #e5e5e5; --gray-100: #f5f5f5; --white: #ffffff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--white); color: var(--black); line-height: 1.6; min-height: 100vh; }
+
+    /* HEADER */
+    header { background: var(--black); color: var(--white); padding: 0 2rem; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #222; }
+    .header-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .header-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--white); text-decoration: none; }
+    .header-logo span { color: var(--red-mid); }
+    nav { display: flex; gap: 2px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.875rem; font-weight: 400; padding: 0.4rem 0.75rem; border-radius: var(--radius-sm); transition: color 0.15s, background 0.15s; }
+    nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+    nav a.active { color: var(--white); font-weight: 500; }
+
+    /* PAGE HERO */
+    .page-hero { background: var(--black); color: var(--white); padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 340px; height: 340px; background: radial-gradient(circle, rgba(232,17,31,0.15) 0%, transparent 70%); pointer-events: none; }
+    .page-hero-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 0.8rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--red-mid); }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.1; color: var(--white); }
+    .page-hero h1 em { font-style: italic; color: var(--red-mid); }
+
+    /* MAIN */
+    main { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+    .section-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--black); margin-bottom: 1.5rem; line-height: 1.2; }
+
+    /* PROFIL BLOCK */
+    .profil-block { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--gray-200); }
+    .profil-avatar { width: 120px; height: 120px; border-radius: var(--radius-lg); overflow: hidden; background: var(--gray-100); border: 1px solid var(--gray-200); flex-shrink: 0; }
+    .profil-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .profil-avatar-placeholder { width: 120px; height: 120px; border-radius: var(--radius-lg); background: var(--gray-100); border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 2.5rem; color: var(--red); flex-shrink: 0; }
+    .profil-text p { color: var(--gray-700); font-size: 0.97rem; line-height: 1.75; margin-bottom: 1rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 0.65rem 1.3rem; background: var(--red); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: var(--sans); font-size: 0.88rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background 0.15s, transform 0.1s; }
+    .btn-primary:hover { background: #c50e1a; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    /* CENTRES D'INTERETS */
+    .interests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-bottom: 3rem; }
+    .interest-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; transition: border-color 0.15s, transform 0.15s; }
+    .interest-card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .interest-card-img { width: 100%; height: 130px; object-fit: cover; display: block; background: var(--gray-100); }
+    .interest-card-img-placeholder { width: 100%; height: 130px; background: var(--red-light); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+    .interest-card-body { padding: 0.8rem 1rem; }
+    .interest-card-title { font-size: 0.9rem; font-weight: 600; color: var(--black); }
+    .interest-card-sub { font-size: 0.78rem; color: var(--gray-500); margin-top: 0.2rem; }
+
+    /* FOOTER */
+    footer { background: var(--gray-900); color: rgba(255,255,255,0.55); text-align: center; padding: 1.5rem 2rem; margin-top: 2rem; }
+    footer strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+    .legal { font-size: 0.78rem; margin-top: 0.5rem; color: rgba(255,255,255,0.35); max-width: 700px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 700px) {
+      .profil-block { grid-template-columns: 1fr; }
+      .profil-avatar, .profil-avatar-placeholder { width: 90px; height: 90px; }
+      nav { display: none; }
+      main { padding: 2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="PortFolioStage.html" class="header-logo">Blessing <span>Chartrain</span></a>
+    <nav>
+      <a href="PortFolioStage.html">Accueil</a>
+      <a href="apropos.html" class="active">À propos</a>
+      <a href="formation.html">Formation</a>
+      <a href="presentation.html">Entreprise</a>
+      <a href="mission.html">Projets</a>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">Portfolio</p>
+    <h1>À <em>propos</em></h1>
+  </div>
+</section>
+
+<main>
+
+  <!-- Profil -->
+  <p class="section-label">Présentation</p>
+  <h2 class="section-title">Qui je suis :</h2>
+
+  <div class="profil-block">
+    <div class="profil-avatar">
+      <img src="photomoa.jpeg" alt="Photo de Blessing Chartrain" onerror="this.parentElement.innerHTML='<div class=\'profil-avatar-placeholder\'>BC</div>'">
+    </div>
+    <div class="profil-text">
+      <p>
+        Je m'appelle <strong>Blessing Chartrain</strong>, étudiante en BTS Services Informatiques aux Organisations
+        option SISR. Passionnée par les systèmes et réseaux, je cherche à développer mes compétences techniques
+        et professionnelles à travers ma formation et mes stages.
+      </p>
+      <p>
+        Ce portfolio retrace mon parcours, mes projets et mes expériences acquises au sein de l'entreprise LDC.
+      </p>
+      <a href="CV Blessing Chartrain.pdf" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger mon CV
+      </a>
+    </div>
+  </div>
+
+  <!-- Centres d'intérêt -->
+  <p class="section-label">Loisirs & passion</p>
+  <h2 class="section-title">Centres d'intérêt</h2>
+
+  <div class="interests-grid">
+    <div class="interest-card">
+      <img src="photobasket.jpg" alt="Sport" class="interest-card-img" onerror="this.outerHTML='<div class=\'interest-card-img-placeholder\'>🏀</div>'">
+      <div class="interest-card-body">
+        <div class="interest-card-title">Sport</div>
+        <div class="interest-card-sub">Basketball & activités physiques</div>
+      </div>
+    </div>
+    <div class="interest-card">
+      <img src="photopiano.jpg" alt="Musique" class="interest-card-img" onerror="this.outerHTML='<div class=\'interest-card-img-placeholder\'>🎹</div>'">
+      <div class="interest-card-body">
+        <div class="interest-card-title">Musique</div>
+        <div class="interest-card-sub">Piano & écoute musicale</div>
+      </div>
+    </div>
+    <div class="interest-card">
+      <img src="photolivre.jpg" alt="Lecture" class="interest-card-img" onerror="this.outerHTML='<div class=\'interest-card-img-placeholder\'>📚</div>'">
+      <div class="interest-card-body">
+        <div class="interest-card-title">Lecture</div>
+        <div class="interest-card-sub"></div>
+      </div>
+    </div>
+    <div class="interest-card">
+      <img src="photonetflix.jpg" alt="Films et séries" class="interest-card-img" onerror="this.outerHTML='<div class=\'interest-card-img-placeholder\'>🎬</div>'">
+      <div class="interest-card-body">
+        <div class="interest-card-title">Films & séries</div>
+        <div class="interest-card-sub"></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="color: var(--gray-700); font-size: 0.95rem; line-height: 1.75; max-width: 640px;">
+    Ces centres d'intérêt sont pour moi des activités importantes car elles me permettent de m'épanouir
+    et de garder un équilibre entre vie personnelle et engagement professionnel.
+  </p>
+
+</main>
+
+<footer>
+  <div><strong>&copy; 2026 — Blessing Chartrain</strong> · Portfolio</div>
+  <p class="legal">
+    Mentions légales : Ce site est un portfolio personnel réalisé à des fins de recrutement. Tous les contenus sont présentés à titre informatif et n'ont pas de valeur contractuelle.
+  </p>
+</footer>
+
+</body>
+</html>

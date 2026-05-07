@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio – Entreprise · Blessing Chartrain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #e8111f; --red-dark: #9b0d15; --red-light: #ffeaeb; --red-mid: #f5444e;
+      --black: #0f0f0f; --gray-900: #1a1a1a; --gray-700: #3d3d3d; --gray-500: #737373;
+      --gray-200: #e5e5e5; --gray-100: #f5f5f5; --white: #ffffff;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--white); color: var(--black); line-height: 1.6; min-height: 100vh; }
+
+    /* HEADER */
+    header { background: var(--black); color: var(--white); padding: 0 2rem; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #222; }
+    .header-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .header-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--white); text-decoration: none; }
+    .header-logo span { color: var(--red-mid); }
+    nav { display: flex; gap: 2px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.875rem; font-weight: 400; padding: 0.4rem 0.75rem; border-radius: var(--radius-sm); transition: color 0.15s, background 0.15s; }
+    nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+    nav a.active { color: var(--white); font-weight: 500; }
+
+    /* PAGE HERO */
+    .page-hero { background: var(--black); color: var(--white); padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 340px; height: 340px; background: radial-gradient(circle, rgba(232,17,31,0.15) 0%, transparent 70%); pointer-events: none; }
+    .page-hero-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red-mid); margin-bottom: 0.8rem; }
+    .page-eyebrow::before { content: ''; display: block; width: 20px; height: 2px; background: var(--red-mid); }
+    .page-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.1; color: var(--white); }
+    .page-hero h1 em { font-style: italic; color: var(--red-mid); }
+
+    /* MAIN */
+    main { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+    .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+    .section-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--black); margin-bottom: 1.5rem; line-height: 1.2; }
+
+    /* LDC INTRO */
+    .ldc-intro { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; background: var(--gray-100); border-radius: var(--radius-lg); padding: 1.8rem 2rem; margin-bottom: 3rem; }
+    .ldc-logo { width: 100px; height: 60px; object-fit: contain; display: block; }
+    .ldc-logo-placeholder { width: 100px; height: 60px; background: var(--red-light); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--red); font-size: 1.2rem; }
+    .ldc-intro-text p { color: var(--gray-700); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 0.6rem 1.2rem; background: var(--red); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: var(--sans); font-size: 0.85rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background 0.15s; }
+    .btn-primary:hover { background: #c50e1a; }
+
+    /* INFO CARDS */
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 3rem; }
+    .info-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .info-card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+    .info-card-icon { width: 40px; height: 40px; border-radius: var(--radius-md); background: var(--red-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .info-card-title { font-size: 1rem; font-weight: 600; color: var(--black); }
+    .info-card p { font-size: 0.88rem; color: var(--gray-700); line-height: 1.7; margin-bottom: 0.8rem; }
+    .info-list { list-style: none; padding: 0; }
+    .info-list li { font-size: 0.875rem; color: var(--gray-700); padding: 0.45rem 0; border-bottom: 1px solid var(--gray-200); display: flex; align-items: flex-start; gap: 0.5rem; }
+    .info-list li:last-child { border-bottom: none; }
+    .info-list li::before { content: ''; display: block; width: 6px; height: 6px; background: var(--red); border-radius: 50%; margin-top: 0.45rem; flex-shrink: 0; }
+    .info-list-sub { font-size: 0.82rem; color: var(--gray-500); padding-left: 1rem; }
+
+    /* SECTION DIVIDER */
+    .section-divider { height: 1px; background: var(--gray-200); margin: 2.5rem 0; }
+
+    /* FOOTER */
+    footer { background: var(--gray-900); color: rgba(255,255,255,0.55); text-align: center; padding: 1.5rem 2rem; margin-top: 2rem; }
+    footer strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+    .legal { font-size: 0.78rem; margin-top: 0.5rem; color: rgba(255,255,255,0.35); max-width: 700px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 700px) {
+      .ldc-intro { grid-template-columns: 1fr; }
+      nav { display: none; }
+      main { padding: 2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="PortFolioStage.html" class="header-logo">Blessing <span>Chartrain</span></a>
+    <nav>
+      <a href="PortFolioStage.html">Accueil</a>
+      <a href="apropos.html">À propos</a>
+      <a href="formation.html">Formation</a>
+      <a href="presentation.html" class="active">Entreprise</a>
+      <a href="mission.html">Projets</a>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="page-eyebrow">Portfolio</p>
+    <h1>L'<em>entreprise</em></h1>
+  </div>
+</section>
+
+<main>
+
+  <!-- LDC Intro -->
+  <p class="section-label">Stage & expérience</p>
+  <h2 class="section-title">Présentation du groupe LDC</h2>
+
+  <div class="ldc-intro">
+    <img src="Logo-LDC.jpg" alt="Logo LDC" class="ldc-logo" onerror="this.outerHTML='<div class=\'ldc-logo-placeholder\'>LDC</div>'">
+    <div class="ldc-intro-text">
+      <p>
+        J'ai réalisé mon stage au sein du groupe LDC, leader français de la volaille et du traiteur.
+        Cette expérience m'a permis de découvrir le fonctionnement d'un service informatique en entreprise
+        et de mettre en pratique mes compétences en systèmes et réseaux.
+      </p>
+      <a href="DiapoStageBlessingChartrain.pdf" class="btn-primary">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Voir le diaporama de stage
+      </a>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Cybersécurité & Veille -->
+  <p class="section-label">Pratiques internes</p>
+  <h2 class="section-title">Cybersécurité & veille</h2>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-card-icon">🔒</div>
+        <div class="info-card-title">Cybersécurité</div>
+      </div>
+      <p>La protection et l'intégrité des données sont primordiales dans un réseau. J'ai donc appris à prendre
+	  des précautions logicielles et matérielles et à les mettre en place contre toute menace informatique.</p>
+      <p style="font-size:0.8rem; font-weight:600; color:var(--black); margin-top:1rem; margin-bottom:0.5rem;">Précautions logicielles</p>
+      <ul class="info-list">
+        <li>Divulgation de données personnelles interdites</li>
+        <li>Protection des mots de passe</li>
+        <li>Formations internes de sensibilisation</li>
+        <li>Réunions régulières de sensibilisation</li>
+      </ul>
+      <p style="font-size:0.8rem; font-weight:600; color:var(--black); margin-top:1rem; margin-bottom:0.5rem;">Précautions matérielles</p>
+      <ul class="info-list">
+        <li>Verrouillage du matériel en cas d'absence</li>
+        <li>Salle serveurs sécurisée et verrouillée</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-header">
+        <div class="info-card-icon">📡</div>
+        <div class="info-card-title">Veille technologique</div>
+      </div>
+      <p>Depuis mon intégration dans l'entreprise, j'ai développé une démarche de veille technologique pour rester à jour sur les nouveautés et les évolutions du secteur informatique.</p>
+      <ul class="info-list" style="margin-top:0.8rem;">
+        <li>Participation aux réunions d'équipe</li>
+        <li>Consultation de la messagerie interne</li>
+        <li>Recherches et lectures spécialisées</li>
+        <li>Utilisation d'applications de veille</li>
+      </ul>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <div><strong>&copy; 2026 — Blessing Chartrain</strong> · Portfolio</div>
+  <p class="legal">
+    Mentions légales : Ce site est un portfolio personnel réalisé à des fins de recrutement. Tous les contenus sont présentés à titre informatif et n'ont pas de valeur contractuelle.
+  </p>
+</footer>
+
+</body>
+</html>
